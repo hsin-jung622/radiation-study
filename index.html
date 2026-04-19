@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>輻射防護師備考計畫</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans TC',sans-serif;background:#f7f6f2;color:#1c1c1c;font-size:14px;line-height:1.7}
+.header{background:#1c1c1c;color:#f7f6f2;padding:24px 28px}
+.header h1{font-size:20px;font-weight:700;margin-bottom:4px}
+.header p{font-size:12px;color:#aaa}
+.nav{background:#fff;border-bottom:1px solid #e5e2da;display:flex;flex-wrap:wrap;padding:0 20px;position:sticky;top:0;z-index:10}
+.nt{padding:13px 14px;font-size:12px;font-weight:600;cursor:pointer;border-bottom:2.5px solid transparent;color:#888;white-space:nowrap;transition:all .15s}
+.nt.on{color:#1c1c1c;border-color:#1c1c1c}
+.page{display:none;padding:20px;max-width:800px}.page.on{display:block}
+
+/* cards */
+.card{background:#fff;border:1px solid #e5e2da;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.card-h{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none}
+.card-h:hover{background:#faf9f6}
+.badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.card-title{flex:1;font-size:13px;font-weight:600}
+.card-sub{font-size:11px;color:#999;white-space:nowrap}
+.tri{font-size:9px;color:#ccc;transition:transform .18s;margin-left:4px}
+.card-body{display:none;padding:4px 16px 16px;border-top:1px solid #f0ede6}
+.card-body.open{display:block}.tri.open{transform:rotate(90deg)}
+
+/* time blocks */
+.trow{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tblock{border-radius:6px;padding:9px 13px;min-width:90px;font-size:11px}
+.tblock b{display:block;font-size:12px;font-weight:700;margin-bottom:2px}
+
+/* content elements */
+h3{font-size:13px;font-weight:700;color:#1c1c1c;margin:14px 0 6px;letter-spacing:.02em}
+h4{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.07em;margin:12px 0 5px}
+ul{list-style:none;margin:0}
+ul li{font-size:12.5px;padding:3px 0 3px 15px;position:relative;line-height:1.55;color:#333}
+ul li::before{content:"▸";position:absolute;left:0;color:#bbb;font-size:11px;top:5px}
+ul li b{color:#1c1c1c;font-weight:700}
+p.note{font-size:12px;color:#555;line-height:1.6;margin:4px 0}
+
+.tip{padding:10px 13px;border-radius:6px;border-left:3px solid;margin:10px 0}
+.tip b{display:block;font-size:10px;font-weight:700;letter-spacing:.06em;margin-bottom:3px}
+.tip p{font-size:12px;line-height:1.6}
+.tip.blue{background:#EEF4FD;border-color:#3B82F6}.tip.blue b{color:#2563EB}.tip.blue p{color:#1e3a5f}
+.tip.grn{background:#F0FDF4;border-color:#22C55E}.tip.grn b{color:#16A34A}.tip.grn p{color:#14532d}
+.tip.red{background:#FEF2F2;border-color:#EF4444}.tip.red b{color:#DC2626}.tip.red p{color:#7f1d1d}
+.tip.amb{background:#FFFBEB;border-color:#F59E0B}.tip.amb b{color:#D97706}.tip.amb p{color:#7c4a00}
+
+/* question cards */
+.qc{background:#faf9f6;border:1px solid #e8e5de;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.qtag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+.qtext{font-size:13px;font-weight:600;color:#1c1c1c;margin-bottom:8px;line-height:1.5}
+.qstep{font-size:12px;color:#444;padding:3px 0 3px 16px;position:relative;line-height:1.5;border-left:2px solid #e5e2da;margin-left:4px;padding-left:10px;margin-bottom:3px}
+.qans{margin-top:8px;background:#fff;border:1px dashed #d0ccc4;border-radius:4px;padding:7px 10px;font-size:12px;color:#333}
+.code{background:#f0ede6;border-radius:6px;padding:10px 13px;font-family:monospace;font-size:12px;line-height:1.8;margin:8px 0;color:#1c1c1c}
+
+/* tables */
+table.t{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+table.t th{background:#f0ede6;padding:6px 10px;text-align:left;border:1px solid #e0ddd6;font-weight:700;font-size:11px;letter-spacing:.04em}
+table.t td{padding:6px 10px;border:1px solid #e8e5de;vertical-align:top;line-height:1.5}
+table.t tr:nth-child(even) td{background:#faf9f6}
+.hi{font-weight:700;color:#1a3a5c}
+
+/* day header */
+.dh{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;background:#fff;border:1px solid #e5e2da;border-radius:10px;padding:16px 18px}
+.dbadge{width:50px;height:50px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;line-height:1.2;text-align:center}
+.dinfo .dt{font-size:15px;font-weight:700;margin-bottom:3px}
+.dinfo .ds{font-size:12px;color:#666}
+.dinfo .dtime{font-size:11px;color:#999;margin-top:3px}
+
+/* score table */
+.srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+.scard{background:#fff;border:1px solid #e5e2da;border-radius:8px;padding:12px 14px}
+.scard .sv{font-size:22px;font-weight:800;margin-bottom:2px}
+.scard .sl{font-size:11px;color:#666;line-height:1.4}
+
+.mjblock{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 16px;margin:8px 0;text-align:center;overflow-x:auto;line-height:2}
+.mjstep{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px;margin:6px 0;overflow-x:auto;line-height:2}
+.mjtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--color-text-secondary);margin-bottom:4px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>輻射防護師 — 五天備考計畫（從零開始版）</h1>
+  <p>上班族｜每天18:00後 3小時｜依據所有歷屆考題實際解答設計</p>
+</div>
+<div class="nav">
+  <div class="nt on" onclick="sw('intro',this)">開始前必看</div>
+  <div class="nt" onclick="sw('d1',this)">Day 1</div>
+  <div class="nt" onclick="sw('d2',this)">Day 2</div>
+  <div class="nt" onclick="sw('d3',this)">Day 3</div>
+  <div class="nt" onclick="sw('d4',this)">Day 4</div>
+  <div class="nt" onclick="sw('d5',this)">Day 5</div>
+  <div class="nt" onclick="sw('law',this)">法規重點</div>
+  <div class="nt" onclick="sw('pro',this)">物理重點</div>
+  <div class="nt" style="color:#DC2626;font-weight:700" onclick="sw('checkpoint',this)">✓ 考核點</div>
+  <div class="nt" onclick="sw('freq',this)">出題頻率證據</div>
+  <div class="nt" onclick="sw('boost',this)">穩穩過策略</div>
+  <div class="nt" onclick="sw('quiz',this)">即時測驗</div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<div id="intro" class="page on">
+  <div class="srow">
+    <div class="scard"><div class="sv" style="color:#1a3a5c">0.4</div><div class="sl">法規加權<br>（滿分100→最多貢獻40）</div></div>
+    <div class="scard"><div class="sv" style="color:#14532d">0.6</div><div class="sl">醫學物理加權<br>（滿分100→最多貢獻60）</div></div>
+    <div class="scard"><div class="sv" style="color:#7c3a00">60</div><div class="sl">及格門檻<br>法規×0.4＋物理×0.6≥60</div></div>
+    <div class="scard"><div class="sv" style="color:#5a0a5a">50+70</div><div class="sl">最低及格組合<br>50×0.4+70×0.6=62✅</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">最重要</span>
+      <span class="card-title">考試結構 — 你要先搞清楚在考什麼</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>科目</th><th>選擇題</th><th>問答題</th><th>加權後滿分</th></tr>
+        <tr><td><b>法規</b></td><td>20題×2分＝40分</td><td>6題×10分＝60分</td><td class="hi">40分</td></tr>
+        <tr><td><b>醫學物理</b></td><td>15題×2分＝30分</td><td>7題×10分＝70分</td><td class="hi">60分</td></tr>
+      </table>
+      <div class="tip blue">
+        <b>關鍵認知</b>
+        <p>問答題佔法規原始分60分、物理原始分70分。<b>問答題是考試最重要的部分</b>，不練問答就不可能過。好消息是：法規問答題這幾年幾乎都是固定幾大題型輪流出，可以直接背答案格式。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">每天怎麼用</span>
+      <span class="card-title">五天時間表總覽 — 下班後3小時如何分配</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>時間</th><th>做什麼</th><th>重點</th></tr>
+        <tr><td>18:00–18:30</td><td>吃飯、休息</td><td>不要一下班就讀書，先讓大腦換擋</td></tr>
+        <tr><td>18:30–20:00</td><td><b>主課（90分鐘）</b></td><td>當天新知識，不開手機，專注</td></tr>
+        <tr><td>20:00–20:20</td><td>休息、走動</td><td>讓記憶沉澱</td></tr>
+        <tr><td>20:20–21:20</td><td><b>做舊題（60分鐘）</b></td><td>對應當天學的，做完立刻對答案</td></tr>
+        <tr><td>21:20–21:40</td><td><b>整理錯誤（20分鐘）</b></td><td>把錯的抄在一張紙，累積成速查卡</td></tr>
+        <tr><td>21:40後</td><td>自由、休息</td><td>不強迫，頂多翻速查卡</td></tr>
+      </table>
+      <div class="tip amb">
+        <b>為什麼每天要整理錯誤</b>
+        <p>到第五天，你那張紙就是你個人最容易錯的題目清單。考前最後複習只看那張紙，比重新翻書有效10倍。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">五天主軸</span>
+      <span class="card-title">每天讀什麼 — 一句話版本</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>天</th><th>法規重心（45分鐘）</th><th>物理重心（45分鐘）</th><th>做題目標</th></tr>
+        <tr><td><b>Day 1</b></td><td>劑量是什麼＋劑量限度數字</td><td>原子、衰變、半衰期公式</td><td>法規選擇題</td></tr>
+        <tr><td><b>Day 2</b></td><td>許可證制度＋期限數字</td><td>X光與物質作用＋偵測器</td><td>物理選擇題</td></tr>
+        <tr><td><b>Day 3</b></td><td>法規問答題6大類標準答案</td><td>游離腔計算＋屏蔽公式</td><td>法規問答練習</td></tr>
+        <tr><td><b>Day 4</b></td><td>複習法規數字（運送＋廢水）</td><td>物理問答4大類計算步驟</td><td>物理問答練習</td></tr>
+        <tr><td><b>Day 5</b></td><td>速查卡複習＋弱點補強</td><td>速查卡複習＋公式默背</td><td>模擬一份完整考卷</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 1 ===== -->
+<div id="d1" class="page">
+  <div class="dh">
+    <div class="dbadge" style="background:#EEF4FD;color:#1e3a5f">D1<br>週一</div>
+    <div class="dinfo">
+      <div class="dt">劑量搞懂 ＋ 衰變看懂</div>
+      <div class="ds">今天結束你要能回答：「工作人員一年最多照多少輻射？」「Co-60半衰期5年，10年後剩幾成？」</div>
+      <div class="dtime">18:30–21:40</div>
+    </div>
+  </div>
+
+  <div class="trow">
+    <div class="tblock" style="background:#1c1c1c;color:#f7f6f2"><b>18:30–19:15</b>法規主課45分</div>
+    <div class="tblock" style="background:#EEF4FD;color:#1e3a5f"><b>19:15–20:00</b>物理主課45分</div>
+    <div class="tblock" style="background:#e5e2da;color:#555"><b>20:00–20:20</b>休息</div>
+    <div class="tblock" style="background:#FFFBEB;color:#7c4a00"><b>20:20–21:20</b>做法規舊題</div>
+    <div class="tblock" style="background:#F0FDF4;color:#14532d"><b>21:20–21:40</b>整理速查卡</div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">法規 45分</span>
+      <span class="card-title">18:30–19:15｜劑量是什麼＋劑量限度</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <h3>▌先搞懂「劑量」三個名詞（考試最常混）</h3>
+      <p class="note">想像你的身體是一個靶，輻射打過來：</p>
+      <ul>
+        <li><b>吸收劑量（Gy）</b>：身體實際吸收了多少能量。1 Gy = 每公斤組織吸收1焦耳能量。</li>
+        <li><b>等價劑量（Sv）</b>：把不同輻射種類的傷害程度考慮進去。α粒子傷害比X光大20倍，所以α要乘20。等價劑量 = 吸收劑量 × 加權因數。</li>
+        <li><b>有效劑量（Sv）</b>：再把「哪個器官被照到」考慮進去。性腺比皮膚重要，所以性腺的等價劑量要乘比較大的係數。</li>
+      </ul>
+      <div class="tip blue">
+        <b>記憶方法</b>
+        <p>Gy → Sv的第一步是乘「輻射加權因數」（考慮輻射種類）；Sv → 有效劑量是再乘「組織加權因數」（考慮被照器官）。考試通常問有效劑量。</p>
+      </div>
+
+      <h3>▌劑量限度 — 這張表要背到閉眼默寫</h3>
+      <table class="t">
+        <tr><th>對象</th><th>有效劑量（年）</th><th>眼球水晶體</th><th>皮膚/四肢</th></tr>
+        <tr><td><b>輻射工作人員</b></td><td class="hi">50 mSv<br>（5年合計≤100 mSv）</td><td>150 mSv</td><td>500 mSv</td></tr>
+        <tr><td><b>一般人（公眾）</b></td><td class="hi">1 mSv</td><td>15 mSv</td><td>50 mSv</td></tr>
+        <tr><td><b>懷孕工作人員</b></td><td colspan="3"><b>腹部表面等價劑量 ≤ 2 mSv</b>（知道懷孕後到生產前）<br>體內核種約定有效劑量 ≤ 1 mSv</td></tr>
+      </table>
+      <div class="tip red">
+        <b>最常考的陷阱</b>
+        <p>「個人劑量 = 體外曝露 + 體內曝露」，<b>不包含</b>背景輻射和醫療曝露。選擇題常問「哪些要加總？」→ 只有B體外＋C體內。</p>
+      </div>
+
+      <h3>▌四個重要名詞定義（問答題常考）</h3>
+      <ul>
+        <li><b>確定性效應</b>：有「門檻劑量」，超過才會發生，而且劑量越高越嚴重。例子：白內障、不孕症。</li>
+        <li><b>機率性效應</b>：沒有門檻，劑量越高發生的「機率」越大，但嚴重度不隨劑量變。例子：癌症。</li>
+        <li><b>職業曝露</b>：輻射工作人員因為工作受到的曝露（不含醫療和背景）。</li>
+        <li><b>緊急曝露</b>：事故中自願超過正常限度去救人。緊急曝露上限：有效劑量100 mSv（一次），救命時可達250 mSv。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">物理 45分</span>
+      <span class="card-title">19:15–20:00｜原子結構＋四種衰變＋半衰期公式</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <h3>▌原子是什麼（30秒建立概念）</h3>
+      <p class="note">原子核在中間，裡面有<b>質子（帶正電）</b>和<b>中子（不帶電）</b>。外面繞著<b>電子（帶負電）</b>。<br>
+      質子數叫「原子序Z」，質子＋中子叫「質量數A」。同一種元素的原子序相同，但中子數可以不同，這叫「同位素」。</p>
+
+      <h3>▌四種衰變（背表格，每次考1–2題）</h3>
+      <table class="t">
+        <tr><th>衰變</th><th>丟出什麼</th><th>Z變化</th><th>A變化</th><th>生活化記法</th></tr>
+        <tr><td><b>α衰變</b></td><td>α粒子（氦核²₂He⁴）</td><td>-2</td><td>-4</td><td>丟一個氦核出去，Z減2、A減4</td></tr>
+        <tr><td><b>β⁻衰變</b></td><td>電子＋反微中子</td><td>+1</td><td>不變</td><td>中子變質子，多出一個電子跑掉</td></tr>
+        <tr><td><b>β⁺衰變</b></td><td>正子＋微中子</td><td>-1</td><td>不變</td><td>質子變中子，多出一個正子跑掉</td></tr>
+        <tr><td><b>γ衰變</b></td><td>γ光子</td><td>不變</td><td>不變</td><td>激發態原子釋放能量，但不改變核的組成</td></tr>
+      </table>
+
+      <h3>▌半衰期公式（一定要會，計算題必用）</h3>
+      <div class="mjblock">$$A(t) = A_0 \times \left(\frac{1}{2}\right)^{\Large t/T_{1/2}} = A_0 \cdot e^{-\lambda t}$$</div>
+      <div class="mjblock">$$\lambda = \frac{0.693}{T_{1/2}}$$</div>
+      <p class="note" style="margin:6px 0">說人話：每過一個半衰期，活度剩一半。過2個T½剩¼，過3個剩⅛，過10個剩約0.1%</p>
+      <div class="mjblock">$$1\,\text{Ci} = 3.7\times10^{10}\,\text{Bq} \qquad 1\,\text{Bq} = 1\,\text{次/秒}$$</div>
+      <div class="tip grn">
+        <b>必記的五個核種半衰期（每年計算題都出現）</b>
+        <p>Co-60：5.26年 / Cs-137：30年 / I-131：8天 / Tc-99m：6小時 / Mo-99：66小時</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">做題 60分</span>
+      <span class="card-title">20:20–21:20｜做 113年第1次 法規選擇題（20題）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>限時30分鐘做完，不確定的先猜，<b>不要空白</b>。</li>
+        <li>對答案，每道錯的題旁邊寫「錯因」：是數字記錯？還是完全不知道？</li>
+        <li>重點關注：第1題（劑量名詞）、第4題（嚴重污染數字）、第6題（體外體內相加條件）。</li>
+      </ul>
+      <div class="tip amb">
+        <b>做題心態</b>
+        <p>第一天不會很多題是正常的。目標不是全對，是「知道自己哪裡不會」。錯的題花時間搞懂，會的題快速跳過。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 2 ===== -->
+<div id="d2" class="page">
+  <div class="dh">
+    <div class="dbadge" style="background:#FFFBEB;color:#7c4a00">D2<br>週二</div>
+    <div class="dinfo">
+      <div class="dt">許可證制度 ＋ X光作用 ＋ 偵測器</div>
+      <div class="ds">今天結束你要能回答：「使用許可證幾年？」「康普吞散射是什麼？」「NaI和GM計數器有什麼差？」</div>
+      <div class="dtime">18:30–21:40</div>
+    </div>
+  </div>
+
+  <div class="trow">
+    <div class="tblock" style="background:#1c1c1c;color:#f7f6f2"><b>18:30–19:15</b>法規主課45分</div>
+    <div class="tblock" style="background:#EEF4FD;color:#1e3a5f"><b>19:15–20:00</b>物理主課45分</div>
+    <div class="tblock" style="background:#e5e2da;color:#555"><b>20:00–20:20</b>休息</div>
+    <div class="tblock" style="background:#FFFBEB;color:#7c4a00"><b>20:20–21:20</b>做物理舊題</div>
+    <div class="tblock" style="background:#F0FDF4;color:#14532d"><b>21:20–21:40</b>整理速查卡</div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">法規 45分</span>
+      <span class="card-title">18:30–19:15｜許可證制度＋期限速查表＋運送規定</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <h3>▌三種管制等級（每次選擇題考1–2題）</h3>
+      <table class="t">
+        <tr><th>等級</th><th>意思</th><th>例子</th></tr>
+        <tr><td><b>豁免管制</b></td><td>活度/劑量率太小，不用管</td><td>電子顯微鏡：10公分處&lt;1μSv/h → 豁免</td></tr>
+        <tr><td><b>登記備查</b></td><td>跟主管機關登記就好，不用申請許可</td><td>行李X光機：5公分處&lt;5μSv/h → 登記備查</td></tr>
+        <tr><td><b>持有許可</b></td><td>要申請許可證，通過才能用</td><td>大多數放射性物質</td></tr>
+        <tr><td><b>高強度設施</b></td><td>超過特定門檻，管制最嚴</td><td>Co-60照射場&gt;200 TBq；加速器&gt;1 GeV</td></tr>
+      </table>
+
+      <h3>▌期限速查表（每次考2–4題，直接背）</h3>
+      <table class="t">
+        <tr><th>項目</th><th>期限</th><th>補充</th></tr>
+        <tr><td>放射性物質/設備 <b>使用許可證</b></td><td class="hi">最長 5 年</td><td></td></tr>
+        <tr><td>可發生設備 <b>製造許可證</b></td><td class="hi">最長 10 年</td><td></td></tr>
+        <tr><td><b>停用許可</b></td><td>最長 2 年</td><td>可申請展延1次</td></tr>
+        <tr><td>輻射防護<b>師</b>認可證書</td><td class="hi">5 年</td><td>換照需<b>72點</b>繼教積分，提前<b>1個月</b>申請</td></tr>
+        <tr><td>輻射防護<b>員</b>認可證書</td><td>5 年</td><td>換照需<b>36點</b>繼教積分</td></tr>
+        <tr><td>服務業認可<b>被撤銷</b>後</td><td class="hi">1年內不得申請同類</td><td></td></tr>
+        <tr><td>永久停用條件</td><td class="hi">未報停用持續超過1年</td><td>或經主管機關廢止許可</td></tr>
+        <tr><td>在職教育訓練紀錄保存</td><td class="hi">10 年</td><td></td></tr>
+        <tr><td>環境監測季報保存</td><td>10 年</td><td></td></tr>
+        <tr><td>環境監測年報保存</td><td class="hi">30 年</td><td></td></tr>
+      </table>
+
+      <h3>▌運送規定（每次考1–2題，最常出「X與Y分別為」）</h3>
+      <table class="t">
+        <tr><th>車輛類型</th><th>表面限值</th><th>距車側2公尺</th><th>運送指數</th></tr>
+        <tr><td><b>專用車輛</b></td><td class="hi">≤ 2 mSv/h</td><td class="hi">≤ 0.1 mSv/h</td><td>—</td></tr>
+        <tr><td><b>非專用車輛</b>（每包件）</td><td>≤ 2 mSv/h</td><td>—</td><td class="hi">≤ 10</td></tr>
+        <tr><td><b>開敞式車輛</b>（貨物上表面）</td><td class="hi">≤ 0.1 mSv/h</td><td>—</td><td>—</td></tr>
+        <tr><td>核定<b>載人座位</b>輻射強度</td><td class="hi">≤ 0.02 mSv/h</td><td>—</td><td>—</td></tr>
+      </table>
+      <div class="tip red">
+        <b>最容易搞混的地方</b>
+        <p>「2 mSv/h」出現兩次：專用車表面 = 2，非專用包件表面 = 2，記法一樣。但「0.1 mSv/h」也出現兩次：專用車距2公尺 = 0.1，開敞車貨物上表面 = 0.1。把它們配對記，不要混。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">物理 45分</span>
+      <span class="card-title">19:15–20:00｜X光與物質作用＋偵測器比較</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <h3>▌X光與物質五種作用（每次考1–3題）</h3>
+      <p class="note">想像X光光子是一顆球打進物質裡，根據能量大小會發生不同事情：</p>
+      <table class="t">
+        <tr><th>作用</th><th>能量範圍</th><th>發生什麼</th><th>考試重點</th></tr>
+        <tr><td><b>光電效應</b></td><td>低能（&lt;0.1 MeV）</td><td>光子被完全吸收，打出一個電子</td><td>μ ∝ Z³/E³（原子序越大、能量越低越容易）</td></tr>
+        <tr><td><b>康普吞散射</b></td><td>中能（0.1–10 MeV）</td><td>光子部分散射＋打出電子</td><td><b>最重要！</b>有計算公式，能量峰位必考</td></tr>
+        <tr><td><b>電子對生成</b></td><td>&gt;1.022 MeV</td><td>光子消失，生成e⁺e⁻一對</td><td>門檻能量1.022 MeV（兩個電子靜止質量）</td></tr>
+        <tr><td>相干散射</td><td>極低能</td><td>光子方向改變，能量不變</td><td>能量不損失，選擇題用來排除</td></tr>
+        <tr><td>光核反應</td><td>&gt;8 MeV</td><td>打出中子</td><td>高能加速器才有，考試提到時選「&gt;8 MeV」</td></tr>
+      </table>
+
+      <h3>▌康普吞能量計算（問答題必考）</h3>
+      <div class="mjtag">第一步：算 α</div>
+      <div class="mjblock">$$\alpha = \frac{E_\gamma}{511\,\text{keV}}$$</div>
+      <div class="mjtag">第二步：回散射峰（光子180°散射後剩餘能量）</div>
+      <div class="mjblock">$$E_{\text{回散}} = \frac{E_\gamma}{1+2\alpha}$$</div>
+      <div class="mjtag">第三步：康普吞邊緣（電子獲得的最大動能）</div>
+      <div class="mjblock">$$E_{\text{邊緣}} = E_\gamma - E_{\text{回散}}$$</div>
+      <div class="mjtag">全能峰 = 原始光子能量，不需計算</div>
+      <div class="mjblock">$$E_{\text{全能峰}} = E_\gamma$$</div>
+      <p class="note" style="margin-top:8px"><b>Cs-137（662 keV）範例：</b><br>
+      α = 662/511 = 1.296　→　E<sub>回</sub> = 662/(1+2×1.296) = <b>184 keV</b>　→　E<sub>邊</sub> = 662−184 = <b>478 keV</b>　→　全能峰 = <b>662 keV</b></p>
+      <div class="tip blue">
+        <b>為什麼要背這個</b>
+        <p>NaI(Tl)偵測器量Cs-137的題目幾乎每年都出，問「全能峰、康普吞邊緣、回散射峰各在哪個能量」。把上面這個計算練熟，看到Cs-137就能秒算。</p>
+      </div>
+
+      <h3>▌偵測器比較（選擇題每次1–2題）</h3>
+      <table class="t">
+        <tr><th>偵測器</th><th>原理</th><th>特點</th><th>用途</th></tr>
+        <tr><td><b>游離腔</b></td><td>收集游離的離子</td><td>最精確，W值=33.97 eV/離子對（空氣）</td><td>精確劑量量測</td></tr>
+        <tr><td><b>GM計數器</b></td><td>氣體放大</td><td>只能計數，<b>無法判斷能量</b>，有死時間</td><td>污染偵測</td></tr>
+        <tr><td><b>NaI(Tl)</b></td><td>閃爍發光</td><td>靈敏度高，解析度比Ge差</td><td>γ能譜分析</td></tr>
+        <tr><td><b>HPGe</b></td><td>半導體</td><td><b>最高能量解析度</b>，需液氮冷卻</td><td>精確γ能譜</td></tr>
+        <tr><td><b>LiF（TLD）</b></td><td>熱螢光</td><td>可長期佩戴，加熱後才讀出</td><td>個人劑量計</td></tr>
+        <tr><td><b>液態閃爍</b></td><td>閃爍發光</td><td>適合β偵測</td><td><b>體內污染（尿液）</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">做題 60分</span>
+      <span class="card-title">20:20–21:20｜做 112年第2次 物理選擇題（15題）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>限時25分鐘做完，全部作答不留空白。</li>
+        <li>重點關注：第6題（β⁺衰變互毀輻射）、第7題（電子對生成能量計算）、第8題（康普吞邊緣180度）。</li>
+        <li>對答案後，把<b>每道錯題的正確邏輯</b>寫下來，不只是寫「答案是X」。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 3 ===== -->
+<div id="d3" class="page">
+  <div class="dh">
+    <div class="dbadge" style="background:#F0FDF4;color:#14532d">D3<br>週三</div>
+    <div class="dinfo">
+      <div class="dt">法規問答題標準答案 ＋ 游離腔計算</div>
+      <div class="ds">今天最重要！法規問答題6大類答案直接背，物理游離腔計算練到能做出來</div>
+      <div class="dtime">18:30–21:40</div>
+    </div>
+  </div>
+
+  <div class="trow">
+    <div class="tblock" style="background:#1c1c1c;color:#f7f6f2"><b>18:30–19:30</b>法規問答60分</div>
+    <div class="tblock" style="background:#EEF4FD;color:#1e3a5f"><b>19:30–20:00</b>物理游離腔30分</div>
+    <div class="tblock" style="background:#e5e2da;color:#555"><b>20:00–20:20</b>休息</div>
+    <div class="tblock" style="background:#FFFBEB;color:#7c4a00"><b>20:20–21:20</b>做法規問答練習</div>
+    <div class="tblock" style="background:#F0FDF4;color:#14532d"><b>21:20–21:40</b>整理速查卡</div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">法規問答 60分</span>
+      <span class="card-title">18:30–19:30｜六大類標準答案（直接背，幾乎原題重複出現）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <div class="tip blue">
+        <b>問答題評分方式</b>
+        <p>每題10分，考官找「關鍵詞」給分。每個關鍵詞約2分。你不需要寫整篇文章，<b>條列式寫出關鍵詞就有分</b>。不確定的字詞都寫上去，寫多不扣分。</p>
+      </div>
+
+      <h3>▌第1類：廢水廢氣排放安全評估（出現頻率：每兩年必考）</h3>
+      <div class="qc">
+        <div class="qtext">「排放含放射性物質廢氣/廢水，輻射安全評估應載明哪些事項？排放紀錄應載明哪些事項？」</div>
+        <h4>輻射安全評估 應載明（答這5點）</h4>
+        <ul>
+          <li>輻射作業說明</li>
+          <li>計劃排放廢氣/廢水所含放射性物質之<b>性質、種類、數量、核種及活度</b></li>
+          <li>場所外圍情況描述</li>
+          <li>防止環境污染之<b>監測設備</b>與處理程序及設計</li>
+          <li>主管機關指定之事項</li>
+        </ul>
+        <h4>排放紀錄 應載明（答這幾點）</h4>
+        <ul>
+          <li>排放之<b>日期</b></li>
+          <li>所含放射性物質之<b>種類、數量、核種、活度</b></li>
+          <li>監測設備及其<b>校正日期</b></li>
+        </ul>
+        <h4>額外加分點</h4>
+        <ul>
+          <li>排放紀錄保存：核子設施<b>10年</b>，其他<b>3年</b></li>
+          <li>每年向主管機關申報<b>2次</b></li>
+        </ul>
+      </div>
+
+      <h3>▌第2類：永久停用的情形與後續處理（出現頻率：高，113、114都出）</h3>
+      <div class="qc">
+        <div class="qtext">「何種情形被視為永久停用？永久停用後設施經營者應如何處理？」</div>
+        <h4>視為永久停用的情形（答這3點）</h4>
+        <ul>
+          <li>安全條件與原核准內容不符，設施經營者未依規定申請核准停止，<b>持續達一年以上</b></li>
+          <li>核准停止使用期間，主管機關認定有污染環境、危害人體健康且<b>無法改善或已不堪使用</b></li>
+          <li>主管機關<b>廢止其許可證</b></li>
+        </ul>
+        <h4>永久停用後的處理（答這幾點）</h4>
+        <ul>
+          <li>列冊<b>陳報主管機關</b></li>
+          <li>退回原製造或銷售者、轉讓、以放射性廢棄物處理</li>
+          <li>以放射性廢棄物處理，<b>處理期間不超過3個月</b></li>
+        </ul>
+      </div>
+
+      <h3>▌第3類：嚴重污染環境的標準（出現頻率：極高，幾乎每次都出）</h3>
+      <div class="qc">
+        <div class="qtext">「請說明嚴重污染環境的輻射標準」</div>
+        <ul>
+          <li>(1) 一般人<b>年有效劑量達10 mSv</b></li>
+          <li>(2) 一般人體外曝露劑量率：<b>1小時內超過0.2 mSv</b></li>
+          <li>(3) 空氣中放射性核種濃度：2小時內平均濃度超過<b>年連續空氣排放物濃度的1000倍</b></li>
+          <li>(4) 水中放射性核種濃度：2小時內平均濃度超過<b>年連續水中排放物濃度的1000倍</b></li>
+          <li>(5) 土壤的嚴重污染面積：<b>達1000平方公尺以上</b></li>
+        </ul>
+        <div class="tip red">
+          <b>注意：嚴重污染年有效劑量是10 mSv，不是5 mSv</b>
+          <p>有些舊題答案寫5 mSv（那是另一個法條的「擅自改變場所外放射性物質含量」的標準）。嚴重污染環境標準是<b>10 mSv</b>。近幾年答案已統一為10 mSv。</p>
+        </div>
+      </div>
+
+      <h3>▌第4類：在職教育訓練科目（出現頻率：高）</h3>
+      <div class="qc">
+        <div class="qtext">「雇主對在職輻射工作人員定期實施之教育訓練，應參酌哪些科目？」</div>
+        <ul>
+          <li>(1) 輻射基礎課程</li>
+          <li>(2) 輻射度量及劑量</li>
+          <li>(3) 輻射生物效應</li>
+          <li>(4) 輻射防護課程</li>
+          <li>(5) 原子能相關法規</li>
+          <li>(6) 安全作業程序及工作守則</li>
+          <li>(7) 主管機關提供之相關資訊</li>
+        </ul>
+      </div>
+
+      <h3>▌第5類：輻射事故報告應載明事項（出現頻率：高）</h3>
+      <div class="qc">
+        <div class="qtext">「發生游離輻射事故後，事故報告應載明哪些事項？應於何時提出？」</div>
+        <h4>報告應載明（答這5點）</h4>
+        <ul>
+          <li>含<b>人、事、時、地、物</b>之事故描述</li>
+          <li>事故<b>原因分析</b></li>
+          <li>輻射<b>影響評估</b></li>
+          <li>事故處理經過、善後措施及偵測記錄</li>
+          <li>檢討改善及<b>防範措施</b></li>
+        </ul>
+        <h4>提出時限</h4>
+        <ul>
+          <li>應於事故發生之日起或自知悉之日起<b>30日內</b>提出</li>
+        </ul>
+      </div>
+
+      <h3>▌第6類：廢水排入污水下水道的規定（出現頻率：高）</h3>
+      <div class="qc">
+        <div class="qtext">「含放射性物質廢水排入污水下水道，應符合哪些規定？」</div>
+        <ul>
+          <li>放射性物質須為<b>可溶於水中者</b></li>
+          <li>每月排入污水下水道之放射性物質<b>總活度</b>與排水量之比值，不超過游離輻射防護安全標準之規定（即總α≤0.1 Bq/mL，總β≤1 Bq/mL）</li>
+          <li>每年排入污水下水道之<b>氚</b>的總活度不超過<b>1.85×10¹¹ Bq</b></li>
+          <li><b>碳-14</b>的總活度不超過<b>3.7×10¹⁰ Bq</b></li>
+          <li>其他放射性物質之活度總和不超過<b>3.7×10¹⁰ Bq</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">物理 30分</span>
+      <span class="card-title">19:30–20:00｜游離腔計算步驟（問答必考）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <h3>▌游離腔是什麼（30秒建立概念）</h3>
+      <p class="note">游離腔就是一個裝著空氣的小房間。輻射打進去，把空氣中的分子打成離子（帶電），離子被電極收集形成電流。電流大小告訴你輻射有多強。</p>
+
+      <h3>▌Bragg-Gray理論計算步驟（每次問答題必考之一）</h3>
+      <div style="display:flex;flex-direction:column;gap:6px;margin:8px 0">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:#185FA5;color:#E6F1FB;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px">1</div>
+          <div style="flex:1"><div class="mjtag">空氣質量</div><div class="mjstep">$$m = \rho_{\text{air}} \times V = 1.293\times10^{-3}\,\frac{\text{g}}{\text{cm}^3} \times V\,\text{cm}^3 \times 10^{-3}\,\frac{\text{kg}}{\text{g}}$$</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:#185FA5;color:#E6F1FB;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px">2</div>
+          <div style="flex:1"><div class="mjtag">每秒離子對數（e = 1.6×10⁻¹⁹ C）</div><div class="mjstep">$$n_{\text{ip}} = \frac{I}{e} = \frac{I}{1.6\times10^{-19}}$$</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:#185FA5;color:#E6F1FB;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px">3</div>
+          <div style="flex:1"><div class="mjtag">空氣吸收劑量率（W = 33.97 eV/ip）</div><div class="mjstep">$$\dot{D}_{\text{air}} = \frac{n_{\text{ip}} \times W \times 1.6\times10^{-19}}{m}\quad\text{(Gy/s)}$$</div></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:#185FA5;color:#E6F1FB;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px">4</div>
+          <div style="flex:1"><div class="mjtag">腔壁吸收劑量率（Bragg-Gray）</div><div class="mjstep">$$\dot{D}_{\text{wall}} = \dot{D}_{\text{air}} \times S_{\text{wall/air}}$$</div></div>
+        </div>
+      </div>
+      <div class="tip grn">
+        <b>記住這個固定流程，題目給的數字代入就能算</b>
+        <p>113年第1次物理問答第4題就是這題型，答案是20 mGy/h。只要步驟對，即使算錯數字也能拿部分分數。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">做題 60分</span>
+      <span class="card-title">20:20–21:20｜做 113年第1次 法規問答題（6題）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>把6題的答案自己先寫出來（不看答案），每題寫你記得的關鍵詞。</li>
+        <li>再對照本計畫的標準答案，看自己漏了哪些詞。</li>
+        <li>目標：每題至少寫出3個正確關鍵詞（= 約6分），6題合計36分以上。</li>
+      </ul>
+      <div class="tip amb">
+        <b>問答題評分現實</b>
+        <p>考官不要求完美，要的是關鍵詞到位。「防止污染之監測設備」跟「監測設備與處理程序」都算對。寫錯字不扣分。寫多不扣分。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 4 ===== -->
+<div id="d4" class="page">
+  <div class="dh">
+    <div class="dbadge" style="background:#5a0a5a;color:#f0dff0">D4<br>週四</div>
+    <div class="dinfo">
+      <div class="dt">物理問答4大計算 ＋ 生物效應</div>
+      <div class="ds">今天把物理問答的4個計算類型各做一遍，再搞懂生物效應的選擇題考法</div>
+      <div class="dtime">18:30–21:40</div>
+    </div>
+  </div>
+
+  <div class="trow">
+    <div class="tblock" style="background:#1c1c1c;color:#f7f6f2"><b>18:30–19:00</b>生物效應30分</div>
+    <div class="tblock" style="background:#EEF4FD;color:#1e3a5f"><b>19:00–20:00</b>物理問答計算60分</div>
+    <div class="tblock" style="background:#e5e2da;color:#555"><b>20:00–20:20</b>休息</div>
+    <div class="tblock" style="background:#FFFBEB;color:#7c4a00"><b>20:20–21:20</b>做物理問答練習</div>
+    <div class="tblock" style="background:#F0FDF4;color:#14532d"><b>21:20–21:40</b>整理速查卡</div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FEF2F2;color:#7f1d1d">生物效應 30分</span>
+      <span class="card-title">18:30–19:00｜選擇題常考的生物效應概念</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>概念</th><th>關鍵記憶點</th><th>考試考法</th></tr>
+        <tr><td><b>確定性效應</b></td><td>有門檻、嚴重度隨劑量↑、白內障2–6 Gy</td><td>「哪個是確定性效應？」→ 白內障、不孕</td></tr>
+        <tr><td><b>機率性效應</b></td><td>無門檻、機率隨劑量↑</td><td>「哪個是機率性效應？」→ 癌症、遺傳</td></tr>
+        <tr><td><b>急性輻射症候群</b></td><td>造血系統 → 腸胃系統 → 中樞神經（劑量越高越嚴重）</td><td>「致死劑量哪個最低？」→ 造血系統</td></tr>
+        <tr><td><b>先兆症候群</b></td><td>噁心、嘔吐、腹瀉、暈眩</td><td>「急性輻射後幾小時出現的症狀？」→ 先兆症候群</td></tr>
+        <tr><td><b>細胞週期敏感度</b></td><td>G2/M期最敏感；S期最不敏感</td><td>「哪個時期最容易被輻射殺死？」→ G2/M</td></tr>
+        <tr><td><b>OER氧增比</b></td><td>有氧比無氧更敏感；高LET（α）時OER≈1</td><td>「α粒子氧效應如何？」→ OER接近1，幾乎消失</td></tr>
+        <tr><td><b>LD50/30</b></td><td>30天內造成50%死亡的劑量</td><td>「LD代表什麼？」→ 致死劑量</td></tr>
+        <tr><td><b>RBE</b></td><td>α &gt; 質子 &gt; γ/X/β</td><td>「最大RBE？」→ α粒子或重離子</td></tr>
+      </table>
+      <div class="tip blue">
+        <b>白內障的完整知識（近年常考）</b>
+        <p>接受2–6.5 Gy後，約3–8年後出現白內障（潛伏期很長）。這是確定性效應。選擇題有時問「已知水晶體接受2.5–6.5 Gy，潛伏期約幾年？」→ 答3年。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">物理計算 60分</span>
+      <span class="card-title">19:00–20:00｜物理問答4大計算類型完整步驟</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+
+      <h3>▌計算類型1：有效半衰期（出現頻率：極高）</h3>
+      <div class="qc">
+        <div class="qtext">「某核種物理半衰期15天，生物半衰期45天，初始活度6 mCi，30天後體內剩多少？」</div>
+        <div style="margin:8px 0">
+          <div class="mjtag">步驟1：算有效半衰期</div>
+          <div class="mjstep">$$\frac{1}{T_{\text{eff}}} = \frac{1}{T_{\text{物}}} + \frac{1}{T_{\text{生}}} = \frac{1}{15}+\frac{1}{45} = \frac{4}{45} \quad\Rightarrow\quad T_{\text{eff}} = \frac{45}{4} = 11.25\text{ 天}$$</div>
+          <div class="mjtag">步驟2：代入半衰期公式</div>
+          <div class="mjstep">$$A(30) = 6\,\text{mCi}\times\left(\frac{1}{2}\right)^{30/11.25} = 6\times e^{-1.848} = 6\times 0.158 \approx 0.95\,\text{mCi}$$</div>
+        </div>
+        <div class="qans">答：30天後體內剩約 0.95 mCi</div>
+      </div>
+
+      <h3>▌計算類型2：NaI能譜峰位（出現頻率：極高，幾乎每年）</h3>
+      <div class="qc">
+        <div class="qtext">「以NaI(Tl)量Cs-137的662 keV，計算全能峰、康普吞邊緣、回散射峰」</div>
+        <div style="margin:8px 0">
+          <div class="mjtag">步驟1：算 α</div>
+          <div class="mjstep">$$\alpha = \frac{E_\gamma}{511} = \frac{662}{511} = 1.296$$</div>
+          <div class="mjtag">步驟2：算回散射峰</div>
+          <div class="mjstep">$$E_{\text{回}} = \frac{662}{1+2\times1.296} = \frac{662}{3.592} = 184\,\text{keV}$$</div>
+          <div class="mjtag">步驟3：算康普吞邊緣</div>
+          <div class="mjstep">$$E_{\text{邊}} = 662 - 184 = 478\,\text{keV}$$</div>
+          <div class="mjtag">步驟4：全能峰</div>
+          <div class="mjstep">$$E_{\text{全能峰}} = E_\gamma = 662\,\text{keV}$$</div>
+        </div>
+        <div class="qans">答：全能峰662 keV、康普吞邊緣478 keV、回散射峰184 keV</div>
+      </div>
+
+      <h3>▌計算類型3：GM計數效率（出現頻率：高）</h3>
+      <div class="qc">
+        <div class="qtext">「5年前買0.25 μCi的Co-60，GM計數器測到2×10⁴ cpm，無感時間300 μs，求：(1)損失比率 (2)計數效率」</div>
+        <div style="margin:8px 0">
+          <div class="mjtag">步驟1：算現在活度</div>
+          <div class="mjstep">$$A = A_0 \cdot e^{-\lambda t} = 0.25\,\mu\text{Ci}\times3.7\times10^4\,\frac{\text{Bq}}{\mu\text{Ci}}\times e^{-\frac{0.693\times5}{5.26}} = 4787\,\text{Bq}$$</div>
+          <div class="mjtag">步驟2：死時間修正（τ = 300 μs = 300×10⁻⁶ s）</div>
+          <div class="mjstep">$$R_{\text{true}} = \frac{R_0}{1 - R_0\cdot\tau} = \frac{20000/60}{1-\frac{20000}{60}\times300\times10^{-6}} = 370\,\text{cps} = 22222\,\text{cpm}$$</div>
+          <div class="mjtag">步驟3：損失比率</div>
+          <div class="mjstep">$$\text{損失比率} = 1 - \frac{R_0}{R_{\text{true}}} = 1 - \frac{20000}{22222} = 10\%$$</div>
+          <div class="mjtag">步驟4：計數效率（用觀測到的 cpm ÷ 真實活度 dpm）</div>
+          <div class="mjstep">$$\varepsilon = \frac{R_0\,(\text{cpm})}{A\,(\text{Bq})\times60} = \frac{20000}{4787\times60} = 7\%$$</div>
+        </div>
+        <div class="qans">答：(1)損失比率10%；(2)計數效率7%</div>
+      </div>
+
+      <h3>▌計算類型4：平均壽命證明（出現頻率：高，幾乎每兩年一次）</h3>
+      <div class="qc">
+        <div class="qtext">「請證明放射性同位素的平均壽命為1/λ」</div>
+        <div style="margin:8px 0">
+          <div class="mjstep">$$\tau = \frac{1}{N_0}\int_0^{\infty} t\left|\frac{dN}{dt}\right|dt = \frac{1}{N_0}\int_0^{\infty} t\cdot\lambda N_0 e^{-\lambda t}\,dt = \lambda\int_0^{\infty} t\,e^{-\lambda t}\,dt$$</div>
+          <div class="mjtag">用分部積分：∫₀^∞ t·e^(−λt) dt = 1/λ²</div>
+          <div class="mjstep">$$\tau = \lambda \times \frac{1}{\lambda^2} = \boxed{\dfrac{1}{\lambda}} \quad\blacksquare$$</div>
+        </div>
+        <div class="qans">結論：平均壽命 τ = 1/λ = T½ / 0.693 = 1.443 × T½</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">做題 60分</span>
+      <span class="card-title">20:20–21:20｜做 113年第1次 物理問答題（7題）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>7題各自先想2分鐘，能寫多少寫多少，不會的寫公式名稱也算。</li>
+        <li>重點做：第4題（Bragg-Gray游離腔）、第6題（有效半衰期）、第7題（NaI能譜）。這三題合計30分，是今天的核心目標。</li>
+        <li>對答案後，把每道計算題的<b>步驟</b>記清楚，不只是記答案數字。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY 5 ===== -->
+<div id="d5" class="page">
+  <div class="dh">
+    <div class="dbadge" style="background:#1c1c1c;color:#f7f6f2">D5<br>週五</div>
+    <div class="dinfo">
+      <div class="dt">複習速查卡 ＋ 模擬考 ＋ 考場策略</div>
+      <div class="ds">今天不讀新東西。複習這四天的速查卡，做一份完整模擬，然後早點休息</div>
+      <div class="dtime">18:30–21:00（今天提早結束，讓大腦休息）</div>
+    </div>
+  </div>
+
+  <div class="trow">
+    <div class="tblock" style="background:#1c1c1c;color:#f7f6f2"><b>18:30–19:30</b>速查卡複習60分</div>
+    <div class="tblock" style="background:#FFFBEB;color:#7c4a00"><b>19:30–21:00</b>模擬考90分</div>
+    <div class="tblock" style="background:#F0FDF4;color:#14532d"><b>21:00後</b>放下，睡覺</div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">複習 60分</span>
+      <span class="card-title">18:30–19:30｜速查卡＋默寫測試</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>拿出這四天累積的速查卡（你手抄的那張），從頭到尾看一遍。</li>
+        <li>遮住數字，默背劑量限度：工作人員、一般人、懷孕腹部。</li>
+        <li>遮住答案，默背期限表：使用許可、製造許可、認可證書、停用許可。</li>
+        <li>把四個物理計算步驟在腦子裡默背一遍：有效半衰期、NaI能譜、GM效率、Bragg-Gray。</li>
+        <li>回頭看四天錯過的題目，確認現在懂了。</li>
+      </ul>
+      <div class="tip blue">
+        <b>考前最重要的心態</b>
+        <p>你今天任何新東西都不要讀。看到不熟悉的字眼會讓你焦慮，反而讓已經記住的東西亂掉。你這五天學到的已經是最高頻的考點，相信這五天的積累。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#FFFBEB;color:#7c4a00">模擬考 90分</span>
+      <span class="card-title">19:30–21:00｜做 112年第2次 法規 完整一份</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <ul>
+        <li>19:30–20:10（40分鐘）：做選擇題20題，計時，不查書。</li>
+        <li>20:10–20:50（40分鐘）：做問答題6題，每題最多7分鐘。</li>
+        <li>20:50–21:00（10分鐘）：算分數，分析哪一類題錯最多。</li>
+      </ul>
+      <div class="tip grn">
+        <b>考場策略</b>
+        <p>問答題看完6題，先做最有把握的。每題<b>條列式</b>寫，不要寫長段文字。每條一句話，把關鍵詞放在句首。寫完一題就換下一題，不要卡在同一題超過10分鐘。最後5分鐘回頭補漏掉的小題。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LAW NOTES ===== -->
+<div id="law" class="page">
+  <h3 style="font-size:16px;margin-bottom:16px">法規重點整理 — 選擇題高頻數字速查</h3>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">必背</span>
+      <span class="card-title">完整劑量限度表</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>對象</th><th>有效劑量（年）</th><th>眼球水晶體</th><th>皮膚/四肢</th></tr>
+        <tr><td>輻射工作人員</td><td class="hi">50 mSv（5年≤100 mSv）</td><td>150 mSv</td><td>500 mSv</td></tr>
+        <tr><td>一般人</td><td class="hi">1 mSv</td><td>15 mSv</td><td>50 mSv</td></tr>
+        <tr><td>懷孕工作人員（腹部表面）</td><td colspan="3" class="hi">等價劑量 ≤ 2 mSv；體內核種約定有效劑量 ≤ 1 mSv</td></tr>
+      </table>
+      <div class="tip amb" style="margin-top:8px">
+        <b>口訣記法：50、1、2、1</b>
+        <p>工作人員50→一般人1→懷孕腹部2（體外）→懷孕體內1。從大到小記，不容易混。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">必背</span>
+      <span class="card-title">廢水廢氣排放數字</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>項目</th><th>限值</th><th>提示</th></tr>
+        <tr><td>廢水排入下水道 — 總α</td><td class="hi">≤ 0.1 Bq/mL</td><td>注意是mL不是L</td></tr>
+        <tr><td>廢水排入下水道 — 總β</td><td class="hi">≤ 1 Bq/mL</td><td></td></tr>
+        <tr><td>飲用水 — 總α</td><td>≤ 0.5 Bq/L（≈550 pCi/L）</td><td></td></tr>
+        <tr><td>飲用水 — 總β</td><td>≤ 1 Bq/L（≈1800 pCi/L）</td><td></td></tr>
+        <tr><td>飲用水 — 年有效劑量</td><td>≤ 0.1 mSv</td><td></td></tr>
+        <tr><td>場所外一般人 — 1小時體外曝露</td><td class="hi">≤ 0.02 mSv</td><td>廢氣廢水造成</td></tr>
+        <tr><td>場所外一般人 — 1年體外曝露</td><td class="hi">≤ 0.2 mSv</td><td>廢氣廢水造成</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#EEF4FD;color:#1e3a5f">必背</span>
+      <span class="card-title">健康檢查特殊情況</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>情況</th><th>應做的處置</th><th>記憶法</th></tr>
+        <tr><td>懷疑體內污染</td><td class="hi">全身計測（whole body counting）</td><td>體內→從身體外面「全身掃描」</td></tr>
+        <tr><td>懷疑遭受中子曝露</td><td class="hi">血中鈉二十四（Na-24）含量分析</td><td>中子打Na-23→Na-24，血液測得</td></tr>
+        <tr><td>緊急曝露超過50 mSv</td><td>特別健康檢查、劑量評估、特別醫務監護</td><td></td></tr>
+        <tr><td>緊急曝露超過50 mSv的染色體檢查</td><td class="hi">染色體變異頻率檢查（參考項目）</td><td></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRO NOTES ===== -->
+<div id="pro" class="page">
+  <h3 style="font-size:16px;margin-bottom:16px">醫學物理重點整理 — 公式與常數速查</h3>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">必記</span>
+      <span class="card-title">重要常數（考試必備）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>常數</th><th>數值</th><th>用在哪</th></tr>
+        <tr><td>W值（空氣）</td><td class="hi">33.97 eV/離子對</td><td>游離腔計算</td></tr>
+        <tr><td>空氣密度（STP）</td><td>1.293×10⁻³ g/cm³</td><td>游離腔質量計算</td></tr>
+        <tr><td>電子靜止能量</td><td class="hi">0.511 MeV（= 511 keV）</td><td>康普吞、β⁺衰變</td></tr>
+        <tr><td>電子電量 e</td><td>1.6×10⁻¹⁹ C（庫倫）</td><td>電流→離子對換算</td></tr>
+        <tr><td>1 Ci</td><td class="hi">3.7×10¹⁰ Bq</td><td>活度單位換算</td></tr>
+        <tr><td>1 Bq</td><td>1 次衰變/秒 = 60 dpm</td><td>活度換算</td></tr>
+        <tr><td>亞佛加德羅數 N_A</td><td>6.022×10²³</td><td>比活度計算</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">必記</span>
+      <span class="card-title">輻射加權因數 wR（等價劑量計算用）</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <table class="t">
+        <tr><th>輻射種類</th><th>wR</th><th>記憶法</th></tr>
+        <tr><td>X光、γ射線、β粒子（電子）</td><td class="hi">1</td><td>這三個都是1，最輕微</td></tr>
+        <tr><td>質子（&gt;2 MeV）</td><td class="hi">2</td><td>ICRP 103版本（新版）</td></tr>
+        <tr><td>中子</td><td class="hi">2.5 ~ 20</td><td>能量越高越大，1 MeV時最大（=20）</td></tr>
+        <tr><td>α粒子、重核</td><td class="hi">20</td><td>最大！α最傷人</td></tr>
+      </table>
+      <div class="mjblock">$$H_T\,(\text{Sv}) = D_T\,(\text{Gy}) \times w_R$$</div>
+      <div class="mjblock">$$E\,(\text{Sv}) = \sum_T w_T \cdot H_T$$</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h" onclick="tog(this)">
+      <span class="badge" style="background:#F0FDF4;color:#14532d">必記</span>
+      <span class="card-title">屏蔽計算公式</span>
+      <span class="tri">▶</span>
+    </div>
+    <div class="card-body open">
+      <div class="mjblock">$$I = I_0\cdot e^{-\mu x}$$</div>
+      <div class="mjblock">$$\text{HVL} = \frac{0.693}{\mu} \qquad \text{TVL} = \frac{2.303}{\mu} \qquad I = I_0\cdot\left(\frac{1}{2}\right)^n$$</div>
+      <p class="note" style="margin:8px 0"><b>例：3個HVL → </b>\((\frac{1}{2})^3 = \frac{1}{8}\)　劑量剩原來⅛</p>
+      <p class="note"><b>複合例題</b>：距離縮短½（×4）、時間縮短½（×½）、加3個HVL（×⅛）→ 合計 \(4 \times \frac{1}{2} \times \frac{1}{8} = \frac{1}{4}\)</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== 考核點頁面 ===== -->
+<div id="checkpoint" class="page">
+
+<style>
+.cp-card{background:#fff;border:1px solid #e5e2da;border-radius:10px;margin-bottom:8px;padding:12px 14px}
+.cp-card.pass{border-color:#22C55E;background:#F0FDF4}
+.cp-card.fail{border-color:#EF4444;background:#FEF2F2}
+.cp-head{display:flex;align-items:flex-start;gap:10px}
+.cp-chk{width:22px;height:22px;border-radius:6px;border:1.5px solid #ccc;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px;background:#fff;transition:all .15s}
+.cp-chk.p{background:#22C55E;border-color:#22C55E;color:#fff}
+.cp-chk.f{background:#EF4444;border-color:#EF4444;color:#fff}
+.cp-info{flex:1}
+.cp-t{font-size:13px;font-weight:600;color:#1c1c1c;margin-bottom:2px}
+.cp-d{font-size:11.5px;color:#555;line-height:1.5}
+.cp-pt{font-size:10.5px;color:#888;margin-top:3px}
+.cp-btns{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #f0ede6}
+.cp-btns button{font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid;cursor:pointer;background:transparent}
+.btn-p{border-color:#22C55E;color:#16A34A}.btn-p:hover{background:#F0FDF4}
+.btn-f{border-color:#EF4444;color:#DC2626}.btn-f:hover{background:#FEF2F2}
+.btn-r{border-color:#ddd;color:#888}.btn-r:hover{background:#f5f5f5}
+.cp-ans{margin-top:8px;padding:7px 10px;background:#f7f6f2;border-radius:6px;font-size:11.5px;color:#555}
+.day-sec{font-size:11px;font-weight:700;letter-spacing:.07em;color:#888;text-transform:uppercase;margin:14px 0 7px;padding-left:2px}
+.prog-outer{height:10px;background:#f0ede6;border-radius:5px;overflow:hidden;margin:6px 0}
+.prog-inner{height:100%;background:#22C55E;border-radius:5px;transition:width .4s}
+</style>
+
+<div style="background:#fff;border:1px solid #e5e2da;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:14px;font-weight:700">整體進度</span>
+    <span style="font-size:20px;font-weight:800;color:#185FA5" id="cp-total">0 / 25</span>
+  </div>
+  <div class="prog-outer"><div class="prog-inner" id="cp-main-bar" style="width:0%"></div></div>
+  <div style="font-size:11px;color:#888;display:flex;justify-content:space-between">
+    <span>及格準備度</span><span id="cp-pct">0%</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px" id="cp-day-bars">
+    <div style="text-align:center"><div style="font-size:10px;color:#888;margin-bottom:2px">Day1</div><div class="prog-outer"><div class="prog-inner" id="bar-d1" style="width:0%;background:#185FA5"></div></div><div style="font-size:10px;color:#888" id="d1-pct">0/5</div></div>
+    <div style="text-align:center"><div style="font-size:10px;color:#888;margin-bottom:2px">Day2</div><div class="prog-outer"><div class="prog-inner" id="bar-d2" style="width:0%;background:#16A34A"></div></div><div style="font-size:10px;color:#888" id="d2-pct">0/5</div></div>
+    <div style="text-align:center"><div style="font-size:10px;color:#888;margin-bottom:2px">Day3</div><div class="prog-outer"><div class="prog-inner" id="bar-d3" style="width:0%;background:#D97706"></div></div><div style="font-size:10px;color:#888" id="d3-pct">0/5</div></div>
+    <div style="text-align:center"><div style="font-size:10px;color:#888;margin-bottom:2px">Day4</div><div class="prog-outer"><div class="prog-inner" id="bar-d4" style="width:0%;background:#7C3AED"></div></div><div style="font-size:10px;color:#888" id="d4-pct">0/5</div></div>
+    <div style="text-align:center"><div style="font-size:10px;color:#888;margin-bottom:2px">Day5</div><div class="prog-outer"><div class="prog-inner" id="bar-d5" style="width:0%;background:#DC2626"></div></div><div style="font-size:10px;color:#888" id="d5-pct">0/5</div></div>
+  </div>
+</div>
+
+<div class="tip red" style="margin-bottom:12px"><b>及格目標：加權總分 70 分（有10分緩衝）</b><p>法規68 × 0.4 = 27.2　＋　物理72 × 0.6 = 43.2　＝ <b>70.4分</b>。25個考核點全通過 = 準備完成。</p></div>
+
+<div class="day-sec">Day 1 — 劑量概念＋衰變</div>
+<div class="cp-card" id="cpcard-11"><div class="cp-head"><div class="cp-chk" id="cpc-11" onclick="cpClick('11')"></div><div class="cp-info"><div class="cp-t">劑量限度5個數字默寫</div><div class="cp-d">遮住筆記，默寫：工作人員年50 mSv、5年100 mSv、一般人1 mSv、懷孕腹部2 mSv、懷孕體內1 mSv</div><div class="cp-pt">▸ 法規選擇題每次必出，穩拿4–6分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('11','p')">✓ 通過</button><button class="btn-f" onclick="setCP('11','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('11','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-12"><div class="cp-head"><div class="cp-chk" id="cpc-12" onclick="cpClick('12')"></div><div class="cp-info"><div class="cp-t">四種效應定義能說出</div><div class="cp-d">確定性效應（有閾值、嚴重度隨劑量增）vs 機率性效應（無閾值、機率隨劑量增），各舉一個例子</div><div class="cp-pt">▸ 問答題定義類的基礎關鍵詞</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('12','p')">✓ 通過</button><button class="btn-f" onclick="setCP('12','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('12','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-13"><div class="cp-head"><div class="cp-chk" id="cpc-13" onclick="cpClick('13')"></div><div class="cp-info"><div class="cp-t">半衰期計算：Co-60 不看筆記算出來</div><div class="cp-d">5年前買0.25 Ci的Co-60（T½=5.26年），現在剩多少？寫出公式和計算過程</div><div class="cp-pt">▸ 答案約0.129 Ci　物理問答計算的基礎</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('13','p')">✓ 通過</button><button class="btn-f" onclick="setCP('13','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('13','r')">重置</button></div><div class="cp-ans">答：0.25 × e^(−0.693×5/5.26) ≈ 0.129 Ci</div></div>
+
+<div class="cp-card" id="cpcard-14"><div class="cp-head"><div class="cp-chk" id="cpc-14" onclick="cpClick('14')"></div><div class="cp-info"><div class="cp-t">四種衰變 Z 和 A 各怎麼變</div><div class="cp-d">α（Z-2, A-4）、β⁻（Z+1, A不變）、β⁺（Z-1, A不變）、γ（Z不變, A不變）</div><div class="cp-pt">▸ 物理選擇題每次1–2題</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('14','p')">✓ 通過</button><button class="btn-f" onclick="setCP('14','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('14','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-15"><div class="cp-head"><div class="cp-chk" id="cpc-15" onclick="cpClick('15')"></div><div class="cp-info"><div class="cp-t">法規舊題選擇題 ≥ 12 題正確</div><div class="cp-d">做 113年第1次 法規選擇題（20題），對答案，≥12題對（24分）</div><div class="cp-pt">▸ 確認法規選擇題實際水準</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('15','p')">✓ ≥12題對</button><button class="btn-f" onclick="setCP('15','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('15','r')">重置</button></div></div>
+
+<div class="day-sec">Day 2 — 許可證制度＋X光作用</div>
+<div class="cp-card" id="cpcard-21"><div class="cp-head"><div class="cp-chk" id="cpc-21" onclick="cpClick('21')"></div><div class="cp-info"><div class="cp-t">期限表6個默寫全對</div><div class="cp-d">使用許可5年、製造許可10年、停用許可2年、師認可5年(72點)、員認可5年(36點)、撤銷後1年內不得申請</div><div class="cp-pt">▸ 每次考試必出4–6題，全對穩拿8–12分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('21','p')">✓ 通過</button><button class="btn-f" onclick="setCP('21','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('21','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-22"><div class="cp-head"><div class="cp-chk" id="cpc-22" onclick="cpClick('22')"></div><div class="cp-info"><div class="cp-t">運送規定5個數字全對</div><div class="cp-d">專用車外表面 2 mSv/h、距2公尺 0.1 mSv/h、非專用包件 2 mSv/h（指數≤10）、開敞車上表面 0.1 mSv/h、載人座位 0.02 mSv/h</div><div class="cp-pt">▸ 每次考試必出1–2題</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('22','p')">✓ 通過</button><button class="btn-f" onclick="setCP('22','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('22','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-23"><div class="cp-head"><div class="cp-chk" id="cpc-23" onclick="cpClick('23')"></div><div class="cp-info"><div class="cp-t">Cs-137 康普吞三峰計算</div><div class="cp-d">662 keV：不看筆記算出全能峰、康普吞邊緣、回散射峰，三個數字全對</div><div class="cp-pt">▸ 答案：662 / 478 / 184 keV　11份考卷100%出現</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('23','p')">✓ 三個都對</button><button class="btn-f" onclick="setCP('23','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('23','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-24"><div class="cp-head"><div class="cp-chk" id="cpc-24" onclick="cpClick('24')"></div><div class="cp-info"><div class="cp-t">6種偵測器各說出用途與最重要特點</div><div class="cp-d">游離腔（精確劑量）、GM（計數/污染）、NaI（γ能譜）、HPGe（最高解析度）、LiF-TLD（個人劑量計）、液態閃爍（體內污染/尿液）</div><div class="cp-pt">▸ 選擇題每次1–2題，問答題也出</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('24','p')">✓ 通過</button><button class="btn-f" onclick="setCP('24','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('24','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-25"><div class="cp-head"><div class="cp-chk" id="cpc-25" onclick="cpClick('25')"></div><div class="cp-info"><div class="cp-t">物理選擇題 ≥ 10 題正確</div><div class="cp-d">做 112年第2次 物理選擇題（15題），≥10題對（20分）</div><div class="cp-pt">▸ 物理選擇題實際水準確認</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('25','p')">✓ ≥10題對</button><button class="btn-f" onclick="setCP('25','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('25','r')">重置</button></div></div>
+
+<div class="day-sec">Day 3 — 法規問答6大類＋游離腔</div>
+<div class="cp-card" id="cpcard-31"><div class="cp-head"><div class="cp-chk" id="cpc-31" onclick="cpClick('31')"></div><div class="cp-info"><div class="cp-t">廢水廢氣安全評估：默寫5個項目</div><div class="cp-d">輻射作業說明 / 放射性物質性質核種活度 / 場所外圍描述 / 監測設備與處理程序 / 主管機關指定事項</div><div class="cp-pt">▸ 出現率83%，10分題寫出5點≈拿滿</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('31','p')">✓ ≥4點寫出</button><button class="btn-f" onclick="setCP('31','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('31','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-32"><div class="cp-head"><div class="cp-chk" id="cpc-32" onclick="cpClick('32')"></div><div class="cp-info"><div class="cp-t">永久停用情形＋後續處理</div><div class="cp-d">停用情形（3種）：安全條件不符持續1年以上 / 認定無法改善或不堪使用 / 廢止許可證。後續：列冊陳報 / 退回或轉讓 / 廢棄物處理期間不超過3個月</div><div class="cp-pt">▸ 出現率75%</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('32','p')">✓ 通過</button><button class="btn-f" onclick="setCP('32','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('32','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-33"><div class="cp-head"><div class="cp-chk" id="cpc-33" onclick="cpClick('33')"></div><div class="cp-info"><div class="cp-t">嚴重污染環境5項標準全對</div><div class="cp-d">①年有效劑量達10 mSv ②1小時體外>0.2 mSv ③空氣中>排放濃度1000倍 ④水中>排放濃度1000倍 ⑤土壤達1000平方公尺以上</div><div class="cp-pt">▸ 出現率75%，5個全對拿滿分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('33','p')">✓ 5個全對</button><button class="btn-f" onclick="setCP('33','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('33','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-34"><div class="cp-head"><div class="cp-chk" id="cpc-34" onclick="cpClick('34')"></div><div class="cp-info"><div class="cp-t">游離腔4個步驟能說出</div><div class="cp-d">①算空氣質量 ②算每秒離子對數（I/e） ③算空氣劑量率 ④乘阻擋本領比得腔壁劑量率</div><div class="cp-pt">▸ 步驟說對就有問答題7分，算錯數字也有分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('34','p')">✓ 4步驟都說出</button><button class="btn-f" onclick="setCP('34','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('34','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-35"><div class="cp-head"><div class="cp-chk" id="cpc-35" onclick="cpClick('35')"></div><div class="cp-info"><div class="cp-t">法規問答練習自評 ≥ 30 分</div><div class="cp-d">做 113年第1次 法規問答題（6題×10分），對照解答自評，總分≥30分（每題平均5分）</div><div class="cp-pt">▸ 問答30分是目標68分的核心</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('35','p')">✓ ≥30分</button><button class="btn-f" onclick="setCP('35','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('35','r')">重置</button></div></div>
+
+<div class="day-sec">Day 4 — 物理問答4大計算＋生物效應</div>
+<div class="cp-card" id="cpcard-41"><div class="cp-head"><div class="cp-chk" id="cpc-41" onclick="cpClick('41')"></div><div class="cp-info"><div class="cp-t">廢水排放4個數字默寫</div><div class="cp-d">總α≤0.1 Bq/mL / 總β≤1 Bq/mL / 場所外1小時≤0.02 mSv / 1年≤0.2 mSv</div><div class="cp-pt">▸ 每次必出，全對穩拿4分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('41','p')">✓ 全對</button><button class="btn-f" onclick="setCP('41','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('41','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-42"><div class="cp-head"><div class="cp-chk" id="cpc-42" onclick="cpClick('42')"></div><div class="cp-info"><div class="cp-t">在職訓練7科目＋事故報告5項 默寫</div><div class="cp-d">訓練科目：基礎/度量劑量/生物效應/防護/法規/安全作業/主管機關資訊。事故報告：人事時地物/原因分析/影響評估/處理善後/防範措施，30日內提出</div><div class="cp-pt">▸ 這兩類各出現≥50%，合計最多20分</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('42','p')">✓ 通過</button><button class="btn-f" onclick="setCP('42','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('42','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-43"><div class="cp-head"><div class="cp-chk" id="cpc-43" onclick="cpClick('43')"></div><div class="cp-info"><div class="cp-t">有效半衰期計算：完整做出</div><div class="cp-d">物理T½=15天、生物T½=45天、初始6 mCi，算30天後體內剩多少。不看筆記，寫完整步驟</div><div class="cp-pt">▸ 答案≈0.95 mCi　出現率91%</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('43','p')">✓ 步驟正確</button><button class="btn-f" onclick="setCP('43','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('43','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-44"><div class="cp-head"><div class="cp-chk" id="cpc-44" onclick="cpClick('44')"></div><div class="cp-info"><div class="cp-t">GM計數效率4步驟完整做</div><div class="cp-d">5年前買0.25 μCi Co-60，測到2×10⁴ cpm，τ=300 μs：①現在活度 ②死時間修正 ③損失比率 ④計數效率，步驟順序正確</div><div class="cp-pt">▸ 答案：損失10%、效率7%　出現率55%</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('44','p')">✓ 4步驟都走完</button><button class="btn-f" onclick="setCP('44','f')">✗ 還不會</button><button class="btn-r" onclick="setCP('44','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-45"><div class="cp-head"><div class="cp-chk" id="cpc-45" onclick="cpClick('45')"></div><div class="cp-info"><div class="cp-t">物理問答練習自評 ≥ 35 分</div><div class="cp-d">做 113年第1次 物理問答（7題×10分），對照解答自評≥35分（重點：第4題游離腔、第6題有效半衰期、第7題NaI能譜）</div><div class="cp-pt">▸ 35分以上代表物理問答過半了</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('45','p')">✓ ≥35分</button><button class="btn-f" onclick="setCP('45','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('45','r')">重置</button></div></div>
+
+<div class="day-sec">Day 5 — 複習速查卡＋模擬考</div>
+<div class="cp-card" id="cpcard-51"><div class="cp-head"><div class="cp-chk" id="cpc-51" onclick="cpClick('51')"></div><div class="cp-info"><div class="cp-t">速查卡完整默背一遍</div><div class="cp-d">遮住卡片，從頭到尾默背：劑量限度、期限、運送、廢水、嚴重污染5標準、4個物理公式</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('51','p')">✓ 完成</button><button class="btn-f" onclick="setCP('51','f')">✗ 有漏洞</button><button class="btn-r" onclick="setCP('51','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-52"><div class="cp-head"><div class="cp-chk" id="cpc-52" onclick="cpClick('52')"></div><div class="cp-info"><div class="cp-t">模擬考法規選擇題 ≥ 28 分</div><div class="cp-d">做 112年第2次 法規選擇題（20題），計時40分鐘，≥28分（14題對）</div><div class="cp-pt">▸ 28分是法規選擇題目標30分的93%</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('52','p')">✓ ≥28分</button><button class="btn-f" onclick="setCP('52','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('52','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-53"><div class="cp-head"><div class="cp-chk" id="cpc-53" onclick="cpClick('53')"></div><div class="cp-info"><div class="cp-t">模擬考法規問答 自評 ≥ 32 分</div><div class="cp-d">做 112年第2次 法規問答（6題×10分），對照解答自評≥32分（每題約5.3分）</div><div class="cp-pt">▸ 選擇28+問答32 = 法規60分，通過這關代表達標</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('53','p')">✓ ≥32分</button><button class="btn-f" onclick="setCP('53','f')">✗ 未達標</button><button class="btn-r" onclick="setCP('53','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-54"><div class="cp-head"><div class="cp-chk" id="cpc-54" onclick="cpClick('54')"></div><div class="cp-info"><div class="cp-t">4個物理公式不看筆記默寫</div><div class="cp-d">①有效半衰期公式 ②康普吞回散射峰公式 ③GM死時間修正公式 ④Bragg-Gray腔壁劑量率公式</div><div class="cp-pt">▸ 這4個公式是物理問答40分的核心</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('54','p')">✓ 4個都對</button><button class="btn-f" onclick="setCP('54','f')">✗ 有漏洞</button><button class="btn-r" onclick="setCP('54','r')">重置</button></div></div>
+
+<div class="cp-card" id="cpcard-55"><div class="cp-head"><div class="cp-chk" id="cpc-55" onclick="cpClick('55')"></div><div class="cp-info"><div class="cp-t">及格預測：加權總分估算 ≥ 68 分</div><div class="cp-d">根據這5天的表現估算法規和物理各自的分數，代入公式確認：法規×0.4 + 物理×0.6 ≥ 68（穩穩過目標）</div><div class="cp-pt">▸ 最後確認，確保有10分以上緩衝</div></div></div><div class="cp-btns"><button class="btn-p" onclick="setCP('55','p')">✓ 估算≥68分</button><button class="btn-f" onclick="setCP('55','f')">✗ 低於68分</button><button class="btn-r" onclick="setCP('55','r')">重置</button></div></div>
+
+</div>
+
+<!-- ===== 出題頻率頁面 ===== -->
+<div id="freq" class="page">
+<div class="tip blue" style="margin-bottom:12px"><b>統計依據</b><p>我逐頁看完 109–114 年共 12 份法規考卷、11 份物理考卷的所有問答題，記錄每題主題，統計同一主題出現幾次。這不是猜測，是實際統計。</p></div>
+
+<h3 style="margin-bottom:8px">法規問答題出現頻率（12份考卷統計）</h3>
+<div class="t-wrap" style="overflow-x:auto">
+<table class="t">
+<tr><th>主題</th><th>出現次數/12份</th><th>出現率</th><th>對應考核點</th></tr>
+<tr><td><b>廢水廢氣安全評估＋排放紀錄</b></td><td style="color:#DC2626;font-weight:700">10/12</td><td style="color:#DC2626;font-weight:700">83%</td><td>D3考核1</td></tr>
+<tr><td><b>永久停用情形＋後續處理</b></td><td style="color:#DC2626;font-weight:700">9/12</td><td style="color:#DC2626;font-weight:700">75%</td><td>D3考核2</td></tr>
+<tr><td><b>嚴重污染環境5項標準</b></td><td style="color:#DC2626;font-weight:700">9/12</td><td style="color:#DC2626;font-weight:700">75%</td><td>D3考核3</td></tr>
+<tr><td><b>環境監測計畫應載明事項</b></td><td style="font-weight:600">8/12</td><td style="font-weight:600">67%</td><td>補充題型A</td></tr>
+<tr><td><b>在職教育訓練科目（7項）</b></td><td style="font-weight:600">6/12</td><td style="font-weight:600">50%</td><td>D4考核2</td></tr>
+<tr><td><b>廢水排入下水道規定</b></td><td style="font-weight:600">6/12</td><td style="font-weight:600">50%</td><td>D4考核2</td></tr>
+<tr><td><b>輻射事故報告載明事項＋30天期限</b></td><td style="font-weight:600">5/12</td><td style="font-weight:600">42%</td><td>D4考核2</td></tr>
+</table>
+</div>
+
+<h3 style="margin:14px 0 8px">物理問答題出現頻率（11份考卷統計）</h3>
+<div class="t-wrap" style="overflow-x:auto">
+<table class="t">
+<tr><th>主題</th><th>出現次數/11份</th><th>出現率</th><th>對應考核點</th></tr>
+<tr><td><b>NaI能譜三峰計算（Cs-137為主）</b></td><td style="color:#DC2626;font-weight:700">11/11</td><td style="color:#DC2626;font-weight:700">100%</td><td>D2考核3</td></tr>
+<tr><td><b>有效半衰期計算</b></td><td style="color:#DC2626;font-weight:700">10/11</td><td style="color:#DC2626;font-weight:700">91%</td><td>D4考核3</td></tr>
+<tr><td><b>串聯衰變活度計算或圖形說明</b></td><td style="color:#DC2626;font-weight:700">9/11</td><td style="color:#DC2626;font-weight:700">82%</td><td>穩穩過策略</td></tr>
+<tr><td><b>GM計數效率（死時間修正）</b></td><td style="font-weight:600">6/11</td><td style="font-weight:600">55%</td><td>D4考核4</td></tr>
+<tr><td><b>Bragg-Gray游離腔計算</b></td><td style="font-weight:600">6/11</td><td style="font-weight:600">55%</td><td>D3考核4</td></tr>
+<tr><td><b>平均壽命證明（τ=1/λ）</b></td><td style="font-weight:600">5/11</td><td style="font-weight:600">45%</td><td>物理重點頁</td></tr>
+<tr><td><b>放射性物質侵入途徑與防護</b></td><td style="font-weight:600">4/11</td><td style="font-weight:600">36%</td><td>穩穩過策略</td></tr>
+</table>
+</div>
+
+<div class="tip amb" style="margin-top:10px"><b>這些數字代表什麼</b><p>NaI能譜100%代表你不準備這題就是白白丟掉10分。廢水廢氣安全評估83%代表幾乎可以當作「必考題」來準備。這就是考核點選這些主題的依據。</p></div>
+</div>
+
+<!-- ===== 穩穩過策略頁面 ===== -->
+<div id="boost" class="page">
+<div class="tip red" style="margin-bottom:12px"><b>為什麼62–65很危險</b><p>問答題人工閱卷誤差±3–5分、選擇題一題猜錯少2分，62分只有2分緩衝。<b>目標要到70分以上才安全。</b><br>法規 68 × 0.4 + 物理 72 × 0.6 = 27.2 + 43.2 = <b>70.4分</b></p></div>
+
+<h3 style="margin-bottom:10px">法規多拿8分的方法</h3>
+
+<div class="card">
+  <div class="card-h" onclick="tog(this)"><span class="badge" style="background:#EEF4FD;color:#185FA5">最省力</span><span class="card-title">問答題每題多寫1–2個關鍵詞 → +12分</span><span class="tri">▶</span></div>
+  <div class="card-body open">
+    <p class="note" style="margin-bottom:8px">法規問答按關鍵詞給分，每個詞約2分。現在估計每題5分，代表漏了2–3個詞。補救方式很簡單：把標準答案的詞一個一個抄下來，考試時照單全開寫。</p>
+    <table class="t">
+      <tr><th>問答類型</th><th>現在</th><th>目標</th><th>要多背的詞</th></tr>
+      <tr><td>廢水廢氣安全評估</td><td>5分</td><td class="hi">8分</td><td>「場所外圍情況描述」「主管機關指定事項」</td></tr>
+      <tr><td>永久停用</td><td>5分</td><td class="hi">8分</td><td>「認定有污染無法改善」「廢止許可證」</td></tr>
+      <tr><td>嚴重污染5標準</td><td>6分</td><td class="hi">9分</td><td>「土壤達1000平方公尺」「水中超過1000倍」</td></tr>
+      <tr><td>教育訓練科目</td><td>5分</td><td class="hi">8分</td><td>「安全作業程序及工作守則」「主管機關資訊」</td></tr>
+      <tr><td>環境監測計畫</td><td>4分</td><td class="hi">7分</td><td>「監測頻率及地點」「品質保證措施」「校正方法」</td></tr>
+      <tr><td>廢水排入下水道</td><td>5分</td><td class="hi">8分</td><td>「氚≤1.85×10¹¹ Bq/年」「碳-14≤3.7×10¹⁰ Bq/年」</td></tr>
+    </table>
+    <div class="tip blue"><b>補充題型A：環境監測計畫應載明事項（出現率67%，必加）</b><p>①監測目的及法規依據 ②監測人員組織 ③監測項目、方法、<b>頻率及地點</b> ④儀器設備及<b>校正方法</b> ⑤<b>品質保證</b>措施 ⑥紀錄文件管理 ⑦主管機關指定事項</p></div>
+    <div class="tip blue"><b>補充題型B：法規名詞定義（出現率50%，背5個）</b><p>體外曝露 / 有效劑量 / 合理抑低（ALARA） / 關鍵群體 / 確定性效應　各一句話定義</p></div>
+  </div>
+</div>
+
+<h3 style="margin:14px 0 10px">物理多拿10分的方法</h3>
+
+<div class="card">
+  <div class="card-h" onclick="tog(this)"><span class="badge" style="background:#F0FDF4;color:#16A34A">+7分</span><span class="card-title">串聯衰變「畫圖說明」不算數字也有7分</span><span class="tri">▶</span></div>
+  <div class="card-body open">
+    <p class="note" style="margin-bottom:8px">串聯衰變題通常分3小問：(1)畫圖3–4分 (2)說明趨勢2–3分 (3)算數字3–4分。就算第(3)點算錯，前兩點還是有5–7分。</p>
+    <table class="t">
+      <tr><th>要畫/寫的內容</th><th>得分</th></tr>
+      <tr><td>畫兩條曲線：母核遞減、子核先升後降</td><td>3分</td></tr>
+      <tr><td>標出「子核活度最大值的時間點」</td><td>1分</td></tr>
+      <tr><td>寫一句：「達成暫時平衡，子核以母核半衰期衰減」</td><td>2分</td></tr>
+      <tr><td>說明長期平衡（T½母>>T½子時A母≈A子）</td><td>1分</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h" onclick="tog(this)"><span class="badge" style="background:#F0FDF4;color:#16A34A">+8分</span><span class="card-title">放射性物質侵入體內途徑與防護（純背，不用計算）</span><span class="tri">▶</span></div>
+  <div class="card-body open">
+    <table class="t">
+      <tr><th>侵入途徑（3條）</th><th>對應防護方法</th></tr>
+      <tr><td>①嚥入、吸入</td><td>避免在污染區飲食；戴口罩；工作後及飯前洗手</td></tr>
+      <tr><td>②經由外傷傷口侵入</td><td>若有外傷避免在污染區工作；必須時將傷口妥善包紮</td></tr>
+      <tr><td>③經由無傷口的皮膚吸收</td><td>穿著工作服或防護衣，防止皮膚接觸</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-h" onclick="tog(this)"><span class="badge" style="background:#F0FDF4;color:#16A34A">+3–5分/題</span><span class="card-title">計算題「步驟部分給分」策略</span><span class="tri">▶</span></div>
+  <div class="card-body open">
+    <p class="note" style="margin-bottom:8px">算錯也能拿5–7分，前提是步驟要寫對。物理問答每個小問獨立給分。</p>
+    <ul>
+      <li><b>先寫公式名稱和公式</b>：就算不會算，寫出公式就有1–2分</li>
+      <li><b>把已知數全部列出來</b>：I = ?、V = ?、W = ?…整理已知本身就有分</li>
+      <li><b>算錯了但繼續往下算</b>：用錯的中間值繼續推導，步驟邏輯對還是有分</li>
+      <li><b>每步驟都寫單位</b>：Gy/s、Bq、cpm…顯示你知道在算什麼</li>
+    </ul>
+  </div>
+</div>
+
+<div style="background:#EEF4FD;border-radius:10px;padding:14px 16px;text-align:center;margin-top:14px">
+  <div style="font-size:11px;color:#185FA5;font-weight:700;margin-bottom:4px">補完這些額外內容後的預期分數</div>
+  <div style="font-size:30px;font-weight:800;color:#16A34A">70.4 分 ✅</div>
+  <div style="font-size:12px;color:#14532d;margin-top:4px">法規68 × 0.4 + 物理72 × 0.6 = 27.2 + 43.2　比及格線多10分緩衝</div>
+  <div style="font-size:11px;color:#888;margin-top:6px">額外只需要 2–3 小時，放在 Day 3 和 Day 4 各加 30 分鐘即可</div>
+</div>
+</div>
+
+<!-- ===== 即時測驗頁面 ===== -->
+<div id="quiz" class="page">
+<style>
+.qcard{background:#fff;border:1px solid #e5e2da;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.q-num{font-size:11px;color:#888;margin-bottom:6px}
+.q-text{font-size:13px;font-weight:600;color:#1c1c1c;margin-bottom:10px;line-height:1.5}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.qopt{font-size:12px;padding:8px 12px;border-radius:6px;border:1px solid #e5e2da;cursor:pointer;text-align:left;background:#fff;color:#1c1c1c;transition:all .15s;line-height:1.4}
+.qopt:hover{background:#f7f6f2}
+.qopt.correct{background:#F0FDF4;border-color:#22C55E;color:#14532d;font-weight:600}
+.qopt.wrong{background:#FEF2F2;border-color:#EF4444;color:#7f1d1d}
+.q-exp{font-size:12px;color:#555;padding:8px 12px;background:#f7f6f2;border-radius:6px;margin-top:8px;line-height:1.6;display:none}
+.q-exp.show{display:block}
+.q-next{font-size:12px;padding:7px 16px;border-radius:6px;border:1px solid #ccc;background:#f7f6f2;cursor:pointer;margin-top:8px}
+.q-next:hover{background:#eee}
+.q-score{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+</style>
+<div class="q-score">
+  <span style="font-size:13px;font-weight:600">即時自我測驗 — 12題高頻考點</span>
+  <span style="font-size:13px;color:#185FA5;font-weight:600">答對 <span id="q-ok">0</span> / <span id="q-tot">0</span></span>
+</div>
+<div class="prog-outer" style="margin-bottom:12px"><div class="prog-inner" id="q-bar" style="width:0%"></div></div>
+<div id="q-container"></div>
+<button class="q-next" id="q-next" onclick="nextQ()" style="display:none">下一題 →</button>
+</div>
+
+<script>
+const cpState={};
+function setCP(id,s){
+  cpState[id]=s;
+  const card=document.getElementById('cpcard-'+id);
+  const chk=document.getElementById('cpc-'+id);
+  card.classList.remove('pass','fail');
+  chk.classList.remove('p','f');
+  chk.textContent='';
+  if(s==='p'){card.classList.add('pass');chk.classList.add('p');chk.textContent='✓';}
+  else if(s==='f'){card.classList.add('fail');chk.classList.add('f');chk.textContent='✗';}
+  updateCPProgress();
+}
+function cpClick(id){
+  const cur=cpState[id];
+  if(!cur||cur==='r')setCP(id,'p');
+  else if(cur==='p')setCP(id,'f');
+  else setCP(id,'r');
+}
+function updateCPProgress(){
+  const days=['1','2','3','4','5'];
+  let total=0;
+  days.forEach(d=>{
+    let pass=0;
+    for(let i=1;i<=5;i++){if(cpState[d+i]==='p')pass++;}
+    total+=pass;
+    document.getElementById('bar-d'+d).style.width=(pass/5*100)+'%';
+    document.getElementById('d'+d+'-pct').textContent=pass+'/5';
+  });
+  document.getElementById('cp-total').textContent=total+' / 25';
+  const pct=Math.round(total/25*100);
+  document.getElementById('cp-main-bar').style.width=pct+'%';
+  document.getElementById('cp-pct').textContent=pct+'%';
+}
+
+const quizQ=[
+  {q:'輻射工作人員一年的有效劑量限度為多少 mSv？',opts:['20 mSv','50 mSv','100 mSv','150 mSv'],ans:1,exp:'工作人員年有效劑量 50 mSv，5年累積 ≤ 100 mSv。一般人 1 mSv/年。'},
+  {q:'使用許可證（放射性物質/可發生設備）有效期間最長幾年？',opts:['3年','5年','8年','10年'],ans:1,exp:'使用許可證最長 5 年；製造許可證最長 10 年。這是最常考的期限題型。'},
+  {q:'輻射防護師認可證書換照需要幾點繼續教育積分？',opts:['36點','48點','72點','96點'],ans:2,exp:'師級換照需 72 點；員級換照需 36 點。幾乎每次必考。'},
+  {q:'裝載放射性物質之專用車輛，車外表面任一點不得超過每小時多少 mSv？',opts:['0.1','1','2','5'],ans:2,exp:'專用車：外表面 ≤ 2 mSv/h；距車側 2 公尺 ≤ 0.1 mSv/h。'},
+  {q:'Cs-137（662 keV）以 NaI(Tl) 量測，回散射峰位於多少 keV？',opts:['141 keV','184 keV','214 keV','478 keV'],ans:1,exp:'α=662/511=1.296，回散射峰=662/(1+2×1.296)=662/3.592≈184 keV。康普吞邊緣=662-184=478 keV。'},
+  {q:'懷孕輻射工作人員腹部表面的等價劑量上限為多少 mSv？',opts:['1 mSv','2 mSv','5 mSv','10 mSv'],ans:1,exp:'懷孕工作人員腹部表面等價劑量 ≤ 2 mSv（體外）；體內核種約定有效劑量 ≤ 1 mSv。'},
+  {q:'嚴重污染環境的年有效劑量標準為多少 mSv？',opts:['1 mSv','5 mSv','10 mSv','50 mSv'],ans:2,exp:'嚴重污染環境年有效劑量標準是 10 mSv（近幾年考試已確認為10，不是5）。'},
+  {q:'某核種物理半衰期 15 天，生物半衰期 45 天，有效半衰期為多少天？',opts:['7.5天','11.25天','15天','30天'],ans:1,exp:'1/T_eff = 1/15 + 1/45 = 4/45，T_eff = 45/4 = 11.25 天。'},
+  {q:'懷疑輻射工作人員遭受中子曝露時，應進行何種檢測？',opts:['全身計測','骨髓穿刺','血中鈉二十四含量分析','染色體變異頻率'],ans:2,exp:'中子曝露 → 血中 Na-24 含量分析。體內污染 → 全身計測。'},
+  {q:'廢水排入污水下水道，總 β 的限值為每毫升多少 Bq？',opts:['0.1 Bq/mL','1 Bq/mL','10 Bq/mL','100 Bq/mL'],ans:1,exp:'廢水排入下水道：總α ≤ 0.1 Bq/mL，總β ≤ 1 Bq/mL。注意是 mL 不是 L。'},
+  {q:'物理半衰期 T½=15天、生物半衰期 45天，有效半衰期是多少？',opts:['7.5天','9天','11.25天','30天'],ans:2,exp:'1/T_eff = 1/15 + 1/45 = 3/45 + 1/45 = 4/45，T_eff = 11.25天。'},
+  {q:'放射性物質侵入體內的途徑不包含下列哪一項？',opts:['嚥入或吸入','經由外傷傷口','皮膚直接吸收','眼睛接觸光輻射'],ans:3,exp:'三條途徑：①嚥入/吸入 ②外傷傷口 ③皮膚吸收。眼睛看到輻射不屬於體內污染途徑。'},
+];
+let qIdx=0,qOk=0,qAnswered=false;
+function renderQ(){
+  const q=quizQ[qIdx%quizQ.length];
+  document.getElementById('q-container').innerHTML=`
+    <div class="qcard">
+      <div class="q-num">第 ${qIdx%quizQ.length+1} / ${quizQ.length} 題</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts" id="qopts">
+        ${q.opts.map((o,i)=>`<button class="qopt" onclick="ansQ(${i})">(${i+1}) ${o}</button>`).join('')}
+      </div>
+      <div class="q-exp" id="qexp">${q.exp}</div>
+    </div>`;
+  qAnswered=false;
+  document.getElementById('q-next').style.display='none';
+  document.getElementById('q-tot').textContent=quizQ.length;
+}
+function ansQ(c){
+  if(qAnswered)return;
+  qAnswered=true;
+  const q=quizQ[qIdx%quizQ.length];
+  const opts=document.querySelectorAll('.qopt');
+  opts[q.ans].classList.add('correct');
+  if(c!==q.ans)opts[c].classList.add('wrong');
+  else{qOk++;document.getElementById('q-ok').textContent=qOk;}
+  document.getElementById('qexp').classList.add('show');
+  document.getElementById('q-next').style.display='block';
+  document.getElementById('q-bar').style.width=Math.round(qOk/quizQ.length*100)+'%';
+}
+function nextQ(){
+  qIdx++;
+  if(qIdx>=quizQ.length){qIdx=0;qOk=0;document.getElementById('q-ok').textContent=0;document.getElementById('q-bar').style.width='0%';}
+  renderQ();
+}
+renderQ();
+function sw(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+function tog(h){
+  const b=h.nextElementSibling;
+  const t=h.querySelector('.tri');
+  b.classList.contains('open')?(b.classList.remove('open'),t.classList.remove('open')):(b.classList.add('open'),t.classList.add('open'));
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<script>
+window.MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['$$','$$']]},startup:{ready(){MathJax.startup.defaultReady();}}};
+</script>
+</body>
+</html>
